@@ -9,7 +9,7 @@ export class ChatService {
   constructor(private http: HttpClient) {}
 
   sendMessage(text: string) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(this.BASE_URL + '/analyze', { text }, { headers });
+    // const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post('/analyze', { text });
   }
 }

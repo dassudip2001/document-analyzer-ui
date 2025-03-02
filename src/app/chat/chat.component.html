@@ -1,16 +1,16 @@
-<div class="container mx-auto h-screen flex flex-col">
+<div class="container mx-auto h-screen flex flex-col bg-slate-800">
     <div class="relative flex flex-col h-full w-full">
         <!-- chat section -->
         <div class="flex-grow flex flex-col gap-3 p-3 w-full overflow-y-auto max-h-[calc(100vh-80px)] pb-16">
-           @for (chat of chatHistory; track $index) {
-            @if (chat.from == "user") {
+           <!-- @for (chat of chatHistory; track $index) { -->
+            <!-- @if (chat.from == "user") {
                 <div class="text-white bg-slate-700 rounded-lg p-3 ml-auto">{{chat.message}}</div>
-            } @else {
+            } @else { -->
                 <div class="text-white hover:bg-slate-800 overflow-x-auto p-3 rounded-lg cursor-pointer">
-                    <markdown [data]="chat.message"></markdown>
+                    <markdown [data]="summary"></markdown>
                 </div>
-            }
-           }
+            <!-- } -->
+           <!-- } -->
         </div>
         <!-- input to collect prompts -->
         <div class="w-full flex border border-slate-500 p-3 rounded-full justify-center gap-2 bg-slate-800 mx-auto fixed bottom-2 left-0 right-0 max-w-2xl">
