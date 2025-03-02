@@ -1,14 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChatService {
-  BASE_URL = 'https://document-analyzer-brown.vercel.app';
+  private baseUrl = environment.production
+    ? 'https://document-analyzer-brown.vercel.app'
+    : '';
+
   constructor(private http: HttpClient) {}
 
   sendMessage(text: string) {
-    return this.http.post('/analyze', { text });
+    return this.http.post(`${this.baseUrl}/analyze`, { text });
   }
 }
