@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { MarkdownComponent } from 'ngx-markdown';
 import { FormsModule } from '@angular/forms';
 import { ChatService } from '../chat.service';
@@ -15,31 +15,34 @@ export type ResponseT = {
   templateUrl: './chat.component.html',
   styles: ``,
 })
-export class ChatComponent {
+export class ChatComponent implements OnDestroy {
   loading = false;
   prompt: string = '';
   summary = '';
   #_chatService = inject(ChatService);
   #_bus = new Subscription();
 
+  ngOnDestroy(): void {
+    this.#_bus.unsubscribe();
+  }
   onSubmit() {
     this.loading = true;
     if (this.prompt) {
       console.log(this.prompt);
       const cleanedPrompt = this.#cleanCopiedText(this.prompt);
-      // this.#_bus.add(
-      this.#_chatService.sendMessage(cleanedPrompt).subscribe({
-        next: (response: any) => {
-          this.summary = response.summary;
-          this.prompt = '';
-          this.loading = false;
-        },
-        error: (error) => {
-          console.error(error);
-          this.loading = false;
-        },
-      });
-      // );
+      this.#_bus.add(
+        this.#_chatService.sendMessage(cleanedPrompt).subscribe({
+          next: (response: any) => {
+            this.summary = response.summary;
+            this.prompt = '';
+            this.loading = false;
+          },
+          error: (error) => {
+            console.error(error);
+            this.loading = false;
+          },
+        })
+      );
     }
   }
 
