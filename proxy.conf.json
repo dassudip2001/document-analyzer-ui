@@ -1,0 +1,7 @@
+{
+  "/analyze": {
+    "target": "https://document-analyzer-brown.vercel.app",
+    "secure": false,
+    "changeOrigin": true
+  }
+}
