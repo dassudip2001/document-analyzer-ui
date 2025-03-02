@@ -59,7 +59,7 @@ export class ChatComponent implements OnDestroy {
       .replace(/&quot;/g, '"') // Convert &quot; to "
       .replace(/&amp;/g, '&') // Convert &amp; to &
       .trim();
-    console.log(cleanedText);
+    // console.log(cleanedText);
 
     return cleanedText;
   }
