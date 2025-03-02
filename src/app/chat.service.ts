@@ -8,6 +8,9 @@ export class ChatService {
   constructor(private http: HttpClient) {}
 
   sendMessage(text: string) {
-    return this.http.post('/analyze', { text });
+    return this.http.post(
+      'https://document-analyzer-brown.vercel.app/analyze',
+      { text }
+    );
   }
 }
