@@ -19,11 +19,15 @@ export class ChatComponent {
   summary = '';
   #_chatService = inject(ChatService);
   onSubmit() {
-    console.log(this.prompt);
+    this.prompt = this.prompt.trim().replace(/\s+/g, ' '); // Remove extra spaces
 
-    this.#_chatService.sendMessage(this.prompt).subscribe((response: any) => {
-      this.summary = response.summary;
-      this.prompt = '';
-    });
+    if (this.prompt) {
+      console.log(this.prompt);
+
+      this.#_chatService.sendMessage(this.prompt).subscribe((response: any) => {
+        this.summary = response.summary;
+        this.prompt = '';
+      });
+    }
   }
 }
