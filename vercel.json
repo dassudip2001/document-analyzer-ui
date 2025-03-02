@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/analyze",
-      "destination": "https://document-analyzer-brown.vercel.app/analyze"
-    }
-  ]
-}
